@@ -5,7 +5,7 @@ const Featured = () => {
   return (
     <div className='featured-item p-10'>
       <SectionTitle heading="Featured Item" subHeading="Check It Out"></SectionTitle>
-      <div className='md:flex justify-center items-center gap-5 py-8 px-16'>
+      <div className='md:flex justify-center bg-slate-500 bg-opacity-40 items-center gap-5 py-8 px-16'>
         <div>
           <img src={featuredImg} alt="" />
         </div>
