@@ -41,6 +41,9 @@ const initialIndex=categories.indexOf(category)
    <OrderTab items={salad}></OrderTab>
     </TabPanel>
     <TabPanel>
+   <OrderTab items={pizza}></OrderTab>
+    </TabPanel>
+    <TabPanel>
    <OrderTab items={soup}></OrderTab>
     </TabPanel>
     <TabPanel>
