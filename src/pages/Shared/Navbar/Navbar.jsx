@@ -20,7 +20,7 @@ const Navbar = () => {
     <li><Link to='/menu'>Our Menu</Link></li>
     <li><Link to='/order/salad'>Order Food </Link></li>
     <li><Link to='/secret'>secret </Link></li>
-    <li><Link> <button className="btn"> <FaShoppingCart></FaShoppingCart> <div className="badge badge-secondary">+{cart.length}</div></button> </Link></li>
+    <li><Link to='/dashboard/cart'> <button className="btn"> <FaShoppingCart></FaShoppingCart> <div className="badge badge-secondary">+{cart.length}</div></button> </Link></li>
     
     {
       user ? <>
