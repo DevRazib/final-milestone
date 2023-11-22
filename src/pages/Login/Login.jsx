@@ -4,6 +4,7 @@ import { AuthContext } from '../../provider/AuthProviders';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2';
+import SocialLogin from '../../components/SocialLogin/SocialLogin';
 
 const Login = () => {
   /* const captchaRef=useRef(null); also remove import useRef */
@@ -96,9 +97,11 @@ const handleValidateCaptcha=(e)=>{
           <input disabled={disabled} type="submit" value="Login" className="btn btn-primary" />
         </div>
       </form>
-      <p className='text-center py-4'><small>New Here? <Link to="/signup" className='font-bold text-primary'>Create an account</Link> </small></p>
+      <p className='text-center px-6'><small>New Here? <Link to="/signup" className='font-bold text-primary'>Create an account</Link> </small></p>
+      <SocialLogin></SocialLogin>
     </div>
   </div>
+ 
 </div>
    </>
   );

@@ -4,8 +4,12 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProviders";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 const SignUp = () => {
+  const axiosPublic=useAxiosPublic();
+
   const {
     register,
     handleSubmit,
@@ -24,7 +28,16 @@ const SignUp = () => {
                 updateUserProfile(data.name, data.photoURL)
                     .then(() => {
                         console.log('user profile info updated')
-                        reset();
+                      //create user entry in the database 
+                      const userInfo={
+                        name:data.name,
+                        email:data.email
+                      }
+                      axiosPublic.post('/users', userInfo)
+                      .then(res=>{
+                        if(res.data.insertedId){
+                          console.log('user added to the database')
+                          reset();
                         Swal.fire({
                             position: 'top-end',
                             icon: 'success',
@@ -33,7 +46,8 @@ const SignUp = () => {
                             timer: 1500
                         });
                         navigate('/');
-
+                        }
+                      })
                     })
                     .catch(error => console.log(error))
             })
@@ -132,7 +146,7 @@ const SignUp = () => {
                 </p>
               )}
               <label className="label">
-               <p>
+               <p className="px-6">
                 Already Have an account ? <Link to='/login' className="font-bold text-primary"> Login </Link>
                </p>
               </label>
@@ -140,6 +154,7 @@ const SignUp = () => {
             <div className="form-control mt-6">
               <input type="submit" value="Sign Up" className="btn btn-primary" />
             </div>
+            <SocialLogin></SocialLogin>
           </form>
         </div>
       </div>

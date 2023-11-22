@@ -1,16 +1,39 @@
 
-import { FaCalendar, FaCat, FaHome, FaList, FaSearch, FaShoppingCart, FaStar } from 'react-icons/fa';
+import { FaBook, FaCalendar, FaCat, FaEnvelope, FaHome, FaList, FaSearch, FaShoppingCart, FaStar, FaUser, FaUtensils } from 'react-icons/fa';
 import { NavLink, Outlet } from 'react-router-dom';
 import useCart from '../hooks/useCart';
 
 const Dashboard = () => {
   const [cart] =useCart();
+
+
+  //todo : get isAdmin value from the database 
+  const isAdmin=true;
   return (
     <div className='flex'>
       {/* dashboard side bar  */}
       <div className="w-64 min-h-screen bg-orange-400">
     <ul className="menu p-4">
+      {
+        isAdmin ? <>
+              <li>
+        <NavLink to="/dashboard/adminHome"><FaHome></FaHome> Admin  Home </NavLink>
+      </li>
       <li>
+        <NavLink to="/dashboard/addItems"><FaUtensils></FaUtensils> Add Items   </NavLink>
+      </li>
+      <li>
+        <NavLink to="/dashboard/manageItems"><FaList></FaList> Manage Items  </NavLink>
+      </li>
+      <li>
+        <NavLink to="/dashboard/bookings"><FaBook></FaBook>Manage Bookings </NavLink>
+      </li>
+      <li>
+        <NavLink to="/dashboard/users"><FaUser></FaUser> All Users  </NavLink>
+      </li>
+        </>
+        :<>
+           <li>
         <NavLink to="/dashboard/userHome"><FaHome></FaHome> Home User </NavLink>
       </li>
       <li>
@@ -25,12 +48,20 @@ const Dashboard = () => {
       <li>
         <NavLink to="/dashboard/bookings"><FaList></FaList> My Bookings </NavLink>
       </li>
+        </>
+      }
+
       <div className="divider">OR</div>
+
+      {/* shared nav link */}
       <li>
         <NavLink to="/"><FaHome></FaHome> Home User </NavLink>
+      </li> 
+      <li>
+        <NavLink to="/order/salad"> <FaSearch></FaSearch> Menu </NavLink>
       </li>
       <li>
-        <NavLink to="/"> <FaSearch></FaSearch> Menu </NavLink>
+        <NavLink to="/oder/contact"> <FaEnvelope></FaEnvelope> Contact </NavLink>
       </li>
     </ul>
       </div>
